@@ -13,4 +13,8 @@ public class Staff extends Person{
     public void setYear(int year){
         this.year = year;
     }
+
+    public static Staff createStaffInstance(String name, String address, int year){
+        return new Staff(name,address,year);
+    }
 }
