@@ -11,7 +11,7 @@ public class Main {
 
         String studentName;
         String studentAddress;
-        int studentYearInt;
+        int studentYearInt = 0;
 
         String staffName;
         String staffAddress;
@@ -44,7 +44,7 @@ public class Main {
                 do {
                     studentName = JOptionPane.showInputDialog("Enter Student Name:");
 
-                    if(studentName == ""){
+                    if(studentName.equals("")){
                         JOptionPane.showMessageDialog(null,"Please enter valid information.");
                         continue;
                     }
@@ -55,7 +55,7 @@ public class Main {
                 //Validation for Student Address
                 do {
                     studentAddress = JOptionPane.showInputDialog("Enter Student Address:");
-                    if(studentAddress == ""){
+                    if(studentAddress.equals("")){
                         JOptionPane.showMessageDialog(null,"Please enter valid information.");
                         continue;
                     }
@@ -66,6 +66,12 @@ public class Main {
                 //Validation for Student Year
                 do{
                     String studentYearString = JOptionPane.showInputDialog("Enter Student year(1-4):");
+
+                    //If empty
+                    if(studentYearString.equals("")){
+                        JOptionPane.showMessageDialog(null,"Please enter a valid number.");
+                        continue;
+                    }
 
                     //If not a number
                     for(int letter = 0; letter < studentYearString.length(); letter++ ){
@@ -99,7 +105,7 @@ public class Main {
                 do {
                     staffName = JOptionPane.showInputDialog("Enter Staff Name:");
 
-                    if(staffName == ""){
+                    if(staffName.equals("")){
                         JOptionPane.showMessageDialog(null,"Please enter valid information.");
                         continue;
                     }
@@ -110,7 +116,7 @@ public class Main {
                 //Validation for Staff Address
                 do {
                     staffAddress = JOptionPane.showInputDialog("Enter Staff Address:");
-                    if(staffAddress == ""){
+                    if(staffAddress.equals("")){
                         JOptionPane.showMessageDialog(null,"Please enter valid information.");
                         continue;
                     }
@@ -122,6 +128,8 @@ public class Main {
                 do {
                     String staffserviceString = JOptionPane.showInputDialog("Enter Staff years of service:");
 
+                    //When I was experimenting with data validation I used this w3 Webpage for reference in the error handling section. Which I found is way more efficient than
+                    //simple if statements https://www.w3schools.com/java/java_try_catch.asp
                     try {
                         
                         staffServiceInt = Integer.parseInt(staffserviceString);
@@ -130,7 +138,6 @@ public class Main {
                             JOptionPane.showMessageDialog(null, "Out of range. The Service years should be between 1 and 30.");
                             continue;
                         }
-
                
                         StaffServiceConfirmation = false;
 
@@ -141,7 +148,7 @@ public class Main {
 
                 } while (StaffServiceConfirmation);
 
-                //Create instance of Student
+                //Create instance of Staff
                 staffList[staffCounter] = Staff.createStaffInstance(staffName,staffAddress,staffServiceInt);
                 staffCounter++;
             }
@@ -152,7 +159,7 @@ public class Main {
         //Starting report:
 
         //Students
-        stringOutput += "Students:[Total:" + studentCounter + "]\n";
+        stringOutput += "Students: [Total:" + studentCounter + "]\n";
 
         //Using toString() method to write on the output variable
         for(int index = 0; index < studentCounter; index++){
@@ -160,7 +167,7 @@ public class Main {
         }
 
         //Staff
-        stringOutput += "\n" + "Staff:[Total:" + staffCounter + "]\n";
+        stringOutput += "\n" + "Staff: [Total:" + staffCounter + "]\n";
 
         //Using toString() method to write on the output variable
         for(int index = 0; index < staffCounter; index++){
