@@ -1,12 +1,12 @@
 import javax.swing.*;
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
 
         //Declaring initial variables
         boolean initContinueConfirmation = true;
         int initialChoice;
-        int studentCounter = 0;
-        int staffCounter = 0;
         String stringOutput = "";
 
         String studentName;
@@ -18,8 +18,12 @@ public class Main {
         int staffServiceInt = 0;
 
         //Declaring object arrays for students and staff
-        Student[] studentsList = new Student[100];
-        Staff[] staffList = new Staff[100];
+//        Student[] studentsList = new Student[100];
+//        Staff[] staffList = new Staff[100];
+
+        //Changing for an ArrayList for dynamic listing
+        ArrayList<Student> studentsList = new ArrayList<Student>();
+        ArrayList<Staff> staffList = new ArrayList<Staff>();
 
         //Options for JOption
         Object[] initialOptions = {"Student","Staff","Finish"};
@@ -91,8 +95,8 @@ public class Main {
                 }while(studentYearConfirmation);
 
                 //Create instance of Student
-                studentsList[studentCounter] = Student.createStudentInstance(studentName,studentAddress,studentYearInt);
-                studentCounter++;
+                //studentsList[studentCounter] = Student.createStudentInstance(studentName,studentAddress,studentYearInt);
+                studentsList.add(Student.createStudentInstance(studentName,studentAddress,studentYearInt));
             }
 
             //If Staff
@@ -149,8 +153,8 @@ public class Main {
                 } while (StaffServiceConfirmation);
 
                 //Create instance of Staff
-                staffList[staffCounter] = Staff.createStaffInstance(staffName,staffAddress,staffServiceInt);
-                staffCounter++;
+                //staffList[staffCounter] = Staff.createStaffInstance(staffName,staffAddress,staffServiceInt);
+                staffList.add(Staff.createStaffInstance(staffName,staffAddress,staffServiceInt));
             }
 
         //Instantiating process ended
@@ -159,19 +163,19 @@ public class Main {
         //Starting report:
 
         //Students
-        stringOutput += "Students: [Total:" + studentCounter + "]\n";
+        stringOutput += "Students: [Total:" + studentsList.size() + "]\n";
 
         //Using toString() method to write on the output variable
-        for(int index = 0; index < studentCounter; index++){
-            stringOutput += studentsList[index].toString(index+1) + "\n";
+        for(int index = 0; index < studentsList.size(); index++){
+            stringOutput += studentsList.get(index).toString(index+1) + "\n";
         }
 
         //Staff
-        stringOutput += "\n" + "Staff: [Total:" + staffCounter + "]\n";
+        stringOutput += "\n" + "Staff: [Total:" + staffList.size() + "]\n";
 
         //Using toString() method to write on the output variable
-        for(int index = 0; index < staffCounter; index++){
-            stringOutput += staffList[index].toString(index+1) + "\n";
+        for(int index = 0; index < staffList.size(); index++){
+            stringOutput += staffList.get(index).toString(index+1) + "\n";
         }
 
         //Results report
