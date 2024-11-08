@@ -17,11 +17,7 @@ public class Main {
         String staffAddress;
         int staffServiceInt = 0;
 
-        //Declaring object arrays for students and staff
-//        Student[] studentsList = new Student[100];
-//        Staff[] staffList = new Staff[100];
-
-        //Changing for an ArrayList for dynamic listing
+        //Declaration of both ArrayList
         ArrayList<Student> studentsList = new ArrayList<Student>();
         ArrayList<Staff> staffList = new ArrayList<Staff>();
 
