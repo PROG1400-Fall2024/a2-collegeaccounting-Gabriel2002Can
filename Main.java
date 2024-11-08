@@ -2,6 +2,7 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
 
+        //Declaring initial variables
         boolean initContinueConfirmation = true;
         int initialChoice;
         int studentCounter = 0;
@@ -15,13 +16,15 @@ public class Main {
         String staffName;
         String staffAddress;
         int staffServiceInt = 0;
-;
 
+        //Declaring object arrays for students and staff
         Student[] studentsList = new Student[100];
         Staff[] staffList = new Staff[100];
 
+        //Options for JOption
         Object[] initialOptions = {"Student","Staff","Finish"};
 
+        //Will loop until finish is clicked
         do {
            initialChoice = JOptionPane.showOptionDialog(null,"Select Student or Staff.","Accounting App",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,initialOptions,initialOptions[0]);
 
@@ -149,30 +152,32 @@ public class Main {
         //Starting report:
 
         //Students
-        stringOutput += "Students:[Total:" + studentsList.length + "]\n";
+        stringOutput += "Students:[Total:" + studentCounter + "]\n";
 
+        //Using toString() method to write on the output variable
         for(int index = 0; index < studentCounter; index++){
             stringOutput += studentsList[index].toString(index+1) + "\n";
         }
 
         //Staff
-        stringOutput += "\n" + "Staff:[Total:" + staffList.length + "]\n";
+        stringOutput += "\n" + "Staff:[Total:" + staffCounter + "]\n";
 
+        //Using toString() method to write on the output variable
         for(int index = 0; index < staffCounter; index++){
             stringOutput += staffList[index].toString(index+1) + "\n";
         }
 
         //Results report
-        stringOutput += "\n\n\nResults:\n";
+        stringOutput += "\n\nResults:\n";
 
         //Outgoing
-        stringOutput += "Outgoing:$" + String.format("%.2f",Staff.getOutcomingValue()) + "\n";
+        stringOutput += "Outgoing:$" + String.format("%.2f",Staff.getOutgoingValue()) + "\n";
 
         //Incoming
         stringOutput += "Incoming:$" + String.format("%.2f",Student.getIncomingValue()) + "\n";
 
         //Total
-        stringOutput += "Total:$" + String.format("%.2f",Student.getIncomingValue() - Staff.getOutcomingValue()) + "\n";
+        stringOutput += "Total:$" + String.format("%.2f",Student.getIncomingValue() - Staff.getOutgoingValue()) + "\n";
 
         //Printing
         JOptionPane.showMessageDialog(null,stringOutput);
