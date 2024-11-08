@@ -1,11 +1,13 @@
 public class Staff extends Person{
     private int yearsOfService;
-    private int salary;
+    private double salary;
+    private static double outcomingValue = 0;
 
     public Staff(String name, String address, int yearsOfService) {
         super(name, address);
         this.yearsOfService = yearsOfService;
         this.salary = 50000 + (yearsOfService*500);
+        Staff.outcomingValue += salary/26;
     }
 
     public int getYearsOfService(){
@@ -20,8 +22,16 @@ public class Staff extends Person{
         return new Staff(name,address,yearsOfService);
     }
 
-    public int getSalary(){
+    public double getSalary(){
         return salary;
     }
 
+    public static double getOutcomingValue(){
+        return outcomingValue;
+    }
+
+    @Override
+    public String toString(int index) {
+        return super.toString(index) + ", years = " + yearsOfService + ", pay = $" + String.format("%.2f",salary);
+    }
 }

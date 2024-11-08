@@ -6,6 +6,7 @@ public class Main {
         int initialChoice;
         int studentCounter = 0;
         int staffCounter = 0;
+        String stringOutput = "";
 
         String studentName;
         String studentAddress;
@@ -145,6 +146,38 @@ public class Main {
         //Instantiating process ended
         }while(initContinueConfirmation);
 
+        //Starting report:
+
+        //Students
+        stringOutput += "Students:[Total:" + studentsList.length + "]\n";
+
+        for(int index = 0; index < studentCounter; index++){
+            stringOutput += studentsList[index].toString(index+1) + "\n";
+        }
+
+        //Staff
+        stringOutput += "\n" + "Staff:[Total:" + staffList.length + "]\n";
+
+        for(int index = 0; index < staffCounter; index++){
+            stringOutput += staffList[index].toString(index+1) + "\n";
+        }
+
+        //Results report
+        stringOutput += "\n\n\nResults:\n";
+
+        //Outgoing
+        stringOutput += "Outgoing:$" + String.format("%.2f",Staff.getOutcomingValue()) + "\n";
+
+        //Incoming
+        stringOutput += "Incoming:$" + String.format("%.2f",Student.getIncomingValue()) + "\n";
+
+        //Total
+        stringOutput += "Total:$" + String.format("%.2f",Student.getIncomingValue() - Staff.getOutcomingValue()) + "\n";
+
+        //Printing
+        JOptionPane.showMessageDialog(null,stringOutput);
+
+        //End of program
         }
     }
 
