@@ -22,4 +22,8 @@ public class Person {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String toString(int index){
+        return index + ". name = " + name + ", address = " + address;
+    }
 }

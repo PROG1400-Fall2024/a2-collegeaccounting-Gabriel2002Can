@@ -1,20 +1,23 @@
 public class Student extends Person{
-    private int yearsOfService;
+    private int year;
+    private int fee;
 
-    public Student(String name, String address, int yearsOfService){
+    public Student(String name, String address, int year){
         super(name,address);
-        this.yearsOfService = yearsOfService;
+        this.year = year;
+        this.fee = 2700 + (year*100);
     }
 
-    public int getYearsOfService(){
-        return yearsOfService;
+    public int getYear(){
+        return year;
     }
 
-    public void setYearsOfService(int yearsOfService){
-        this.yearsOfService = yearsOfService;
+    public void setYear(int year){
+        this.year = year;
     }
 
-    public static Student createStudentInstance(String name, String address, int yearsOfService){
-        return new Student(name,address,yearsOfService);
+    public static Student createStudentInstance(String name, String address, int year){
+        return new Student(name,address,year);
     }
+
 }

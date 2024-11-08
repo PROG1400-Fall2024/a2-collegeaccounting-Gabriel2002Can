@@ -13,7 +13,7 @@ public class Main {
 
         String staffName;
         String staffAddress;
-        int studentYearInt;
+        int staffServiceInt = 0;
 ;
 
         Student[] studentsList = new Student[100];
@@ -81,65 +81,68 @@ public class Main {
                 }while(studentYearConfirmation);
 
                 //Create instance of Student
-                studentsList[studentCounter].createStudentInstance(studentName,studentAddress,studentYearInt);
+                studentsList[studentCounter] = Student.createStudentInstance(studentName,studentAddress,studentYearInt);
                 studentCounter++;
             }
 
             //If Staff
             if(initialChoice == 1){
-                boolean studentNameConfirmation = true;
-                boolean studentAddressConfirmation = true;
-                boolean studentYearConfirmation = true;
+                boolean StaffNameConfirmation = true;
+                boolean StaffAddressConfirmation = true;
+                boolean StaffServiceConfirmation = true;
 
-                //Validation for Student Name
+                //Validation for Staff Name
                 do {
-                    studentName = JOptionPane.showInputDialog("Enter Student Name:");
+                    staffName = JOptionPane.showInputDialog("Enter Staff Name:");
 
-                    if(studentName == ""){
+                    if(staffName == ""){
                         JOptionPane.showMessageDialog(null,"Please enter valid information.");
                         continue;
                     }
-                    studentNameConfirmation = false;
+                    StaffNameConfirmation = false;
 
-                }while(studentNameConfirmation);
+                }while(StaffNameConfirmation);
 
-                //Validation for Student Address
+                //Validation for Staff Address
                 do {
-                    studentAddress = JOptionPane.showInputDialog("Enter Student Address:");
-                    if(studentAddress == ""){
+                    staffAddress = JOptionPane.showInputDialog("Enter Staff Address:");
+                    if(staffAddress == ""){
                         JOptionPane.showMessageDialog(null,"Please enter valid information.");
                         continue;
                     }
-                    studentAddressConfirmation = false;
+                    StaffAddressConfirmation = false;
 
-                }while(studentAddressConfirmation);
+                }while(StaffAddressConfirmation);
 
-                //Validation for Student Year
-                do{
-                    String studentYearString = JOptionPane.showInputDialog("Enter Student year(1-4):");
+               
+                do {
+                    String staffserviceString = JOptionPane.showInputDialog("Enter Staff years of service:");
 
-                    //If not a number
-                    for(int letter = 0; letter < studentYearString.length(); letter++ ){
-                        if(!Character.isDigit(studentYearString.charAt(letter))){
-                            JOptionPane.showMessageDialog(null,"Please enter a number.");
+                    try {
+                        
+                        staffServiceInt = Integer.parseInt(staffserviceString);
+
+                        if (staffServiceInt < 1 || staffServiceInt > 30) {
+                            JOptionPane.showMessageDialog(null, "Out of range. The Service years should be between 1 and 30.");
                             continue;
                         }
-                    }
-                    studentYearInt = Integer.parseInt(studentYearString);
 
-                    if(studentYearInt > 4 || studentYearInt < 1){
-                        JOptionPane.showMessageDialog(null,"Out of range. The years should be between 1 and 4.");
-                        continue;
+               
+                        StaffServiceConfirmation = false;
+
+                    } catch (NumberFormatException e) {
+                     
+                        JOptionPane.showMessageDialog(null, "Please enter a valid number.");
                     }
 
-                    studentYearConfirmation = false;
-                }while(studentYearConfirmation);
+                } while (StaffServiceConfirmation);
 
                 //Create instance of Student
-                studentsList[studentCounter].createStudentInstance(studentName,studentAddress,studentYearInt);
-                studentCounter++;
+                staffList[staffCounter] = Staff.createStaffInstance(staffName,staffAddress,staffServiceInt);
+                staffCounter++;
             }
 
+        //Instantiating process ended
         }while(initContinueConfirmation);
 
         }
