@@ -1,6 +1,8 @@
 public class Student extends Person{
     private int year;
     private double fee;
+
+    //Is a class property
     private static double incomingValue = 0;
 
     public Student(String name, String address, int year){
@@ -18,10 +20,20 @@ public class Student extends Person{
         this.year = year;
     }
 
+    public double getFee() {
+        return fee;
+    }
+
+    public void setFee(double fee) {
+        this.fee = fee;
+    }
+
+    //Incoming is a property of the class itself. So it is a static method. Same for the getter method
     public static double getIncomingValue(){
         return incomingValue;
     }
 
+    ////Auto instantiating method
     public static Student createStudentInstance(String name, String address, int year){
         return new Student(name,address,year);
     }

@@ -64,31 +64,28 @@ public class Main {
                 }while(studentAddressConfirmation);
 
                 //Validation for Student Year
-                do{
+                do {
                     String studentYearString = JOptionPane.showInputDialog("Enter Student year(1-4):");
 
-                    //If empty
-                    if(studentYearString.equals("")){
-                        JOptionPane.showMessageDialog(null,"Please enter a valid number.");
-                        continue;
-                    }
+                    //When I was experimenting with data validation I used this w3 Webpage for reference in the error handling section. Which I found is way more efficient than
+                    //simple if statements https://www.w3schools.com/java/java_try_catch.asp
+                    try {
 
-                    //If not a number
-                    for(int letter = 0; letter < studentYearString.length(); letter++ ){
-                        if(!Character.isDigit(studentYearString.charAt(letter))){
-                            JOptionPane.showMessageDialog(null,"Please enter a number.");
+                        studentYearInt = Integer.parseInt(studentYearString);
+
+                        if (studentYearInt < 1 || studentYearInt > 4) {
+                            JOptionPane.showMessageDialog(null, "Out of range. The years should be between 1 and 4.");
                             continue;
                         }
-                    }
-                    studentYearInt = Integer.parseInt(studentYearString);
 
-                    if(studentYearInt > 4 || studentYearInt < 1){
-                        JOptionPane.showMessageDialog(null,"Out of range. The years should be between 1 and 4.");
-                        continue;
+                        studentYearConfirmation = false;
+
+                    } catch (NumberFormatException e) {
+
+                        JOptionPane.showMessageDialog(null, "Please enter a valid number.");
                     }
 
-                    studentYearConfirmation = false;
-                }while(studentYearConfirmation);
+                } while (studentYearConfirmation);
 
                 //Create instance of Student
                 //studentsList[studentCounter] = Student.createStudentInstance(studentName,studentAddress,studentYearInt);
@@ -128,8 +125,7 @@ public class Main {
                 do {
                     String staffserviceString = JOptionPane.showInputDialog("Enter Staff years of service:");
 
-                    //When I was experimenting with data validation I used this w3 Webpage for reference in the error handling section. Which I found is way more efficient than
-                    //simple if statements https://www.w3schools.com/java/java_try_catch.asp
+                    //Data validation for staff
                     try {
                         
                         staffServiceInt = Integer.parseInt(staffserviceString);
@@ -178,13 +174,13 @@ public class Main {
         stringOutput += "\n\nResults:\n";
 
         //Outgoing
-        stringOutput += "Outgoing:$" + String.format("%.2f",Staff.getOutgoingValue()) + "\n";
+        stringOutput += "Outgoing: $" + String.format("%.2f",Staff.getOutgoingValue()) + "\n";
 
         //Incoming
-        stringOutput += "Incoming:$" + String.format("%.2f",Student.getIncomingValue()) + "\n";
+        stringOutput += "Incoming: $" + String.format("%.2f",Student.getIncomingValue()) + "\n";
 
         //Total
-        stringOutput += "Total:$" + String.format("%.2f",Student.getIncomingValue() - Staff.getOutgoingValue()) + "\n";
+        stringOutput += "Total: $" + String.format("%.2f",Student.getIncomingValue() - Staff.getOutgoingValue()) + "\n";
 
         //Printing
         JOptionPane.showMessageDialog(null,stringOutput);

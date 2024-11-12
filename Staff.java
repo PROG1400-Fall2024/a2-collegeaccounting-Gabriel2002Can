@@ -1,6 +1,8 @@
 public class Staff extends Person{
     private int yearsOfService;
     private double salary;
+
+    //Is a class property
     private static double outgoingValue = 0;
 
     public Staff(String name, String address, int yearsOfService) {
@@ -18,6 +20,11 @@ public class Staff extends Person{
         this.yearsOfService = yearsOfService;
     }
 
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    //Auto instantiating method
     public static Staff createStaffInstance(String name, String address, int yearsOfService){
         return new Staff(name,address,yearsOfService);
     }
@@ -26,6 +33,7 @@ public class Staff extends Person{
         return salary;
     }
 
+    //Outgoing is a property of the class itself. So it is a static method. Same for the getter method
     public static double getOutgoingValue(){
         return outgoingValue;
     }
