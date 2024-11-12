@@ -9,7 +9,11 @@ public class Student extends Person{
         super(name,address);
         this.year = year;
         this.fee = 2900 + (year*100);
-        Student.incomingValue += fee/2;
+        Student.incomingValue += calculatingIncValue(fee);
+    }
+
+    private double calculatingIncValue(double feeValue){
+        return feeValue/2;
     }
 
     public int getYear(){

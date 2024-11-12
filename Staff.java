@@ -9,7 +9,11 @@ public class Staff extends Person{
         super(name, address);
         this.yearsOfService = yearsOfService;
         this.salary = 50000 + (yearsOfService*500);
-        Staff.outgoingValue += salary/26;
+        Staff.outgoingValue += calculatingPay(salary);
+    }
+
+    private double calculatingPay(double SalaryValue){
+        return SalaryValue/26;
     }
 
     public int getYearsOfService(){
